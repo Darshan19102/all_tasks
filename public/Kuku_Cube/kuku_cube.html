@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Game</title>
+    <style>
+        body {
+            background-color: cadetblue;
+            color: darkslateblue;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        table {
+            background-color: grey;
+            margin: auto;
+            margin-top: 100px;
+            width: 500px;
+            height: 500px;
+        }
+
+        td {
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+
+        #count {
+            float: left;
+        }
+
+        #timer {
+            float: right;
+        }
+    </style>
+</head>
+
+<body onload="handleBox()">
+    <h4 style="text-align: center;">Darshan Panchal<span style="float: right;">Date : 01/02/2024</span></h4>
+    <div id="count">
+        <h4>Score : <span id="count_value">0</span></h4>
+    </div>
+    <div id="timer">
+        <h4 id="countdown"></h4>
+    </div>
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+        var value = 0;
+        var timeleft = 10;
+        var timer = setInterval(function () {
+            if (timeleft <= 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "Finished";
+                document.getElementsByTagName("body")[0].innerHTML = `
+                <h2 style="margin-top:300px; margin-left:50%">Your Score : ${value}</h2>
+                `;
+                const btn = document.createElement('button');
+                btn.innerHTML = "Play Again"
+                btn.style.marginLeft = "50%"
+                btn.style.fontSize = "20px"
+                btn.style.fontFamily = "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"
+                btn.addEventListener("click", function () {
+                    window.location.reload();
+                });
+                document.getElementsByTagName("body")[0].appendChild(btn);
+            } else {
+                document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+            }
+            timeleft -= 1;
+        }, 1000);
+        console.log(timer);
+        function generateColor() {
+            red = Math.floor(Math.random() * (255 - 0 + 1));
+            green = Math.floor(Math.random() * (255 - 0 + 1));
+            blue = Math.floor(Math.random() * (255 - 0 + 1));
+            return { red, green, blue };
+        }
+        function handleBox() {
+            val1 = generateColor().red;
+            val2 = generateColor().green;
+            val3 = generateColor().blue;
+            table = document.getElementsByTagName("table");
+            td = table[0].getElementsByTagName("td");
+            var randomBox = Math.floor(Math.random() * (td.length - 0));
+            for (let i = 0; i < td.length; i++) {
+                if (i === randomBox) {
+                    td[i].style.backgroundColor = "rgba(" + val1 + "," + val2 + "," + val3 + ",0.5)";
+                } else {
+                    td[i].style.backgroundColor = "rgba(" + val1 + "," + val2 + "," + val3 + ")";
+                    td[i].removeEventListener("click", handleInsert);
+                }
+            }
+            td[randomBox].addEventListener("click", handleInsert)
+        }
+        function handleInsert() {
+            handleColumnInsert();
+            handleRowInsert();
+            handleBox();
+            value++;
+            document.getElementById('count_value').innerHTML = value;
+        }
+        function handleRowInsert() {
+            table = document.getElementsByTagName("table");
+            tr = table[0].getElementsByTagName('tr');
+            td = tr[0].getElementsByTagName("td");
+            table[0].appendChild(document.createElement("tr"));
+            for (i = 0; i < td.length; i++) {
+                table[0].lastChild.appendChild(document.createElement("td"));
+            }
+        }
+        function handleColumnInsert() {
+            table = document.getElementsByTagName("table");
+            tr = table[0].getElementsByTagName('tr');
+            for (i = 0; i < tr.length; i++) {
+                tr[i].appendChild(document.createElement("td"))
+            }
+        }
+    </script>
+</body>
+
+</html>

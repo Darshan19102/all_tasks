@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            background-color: darkslategray;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            background-color: darkcyan;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        #thanks {
+            position: absolute;
+            bottom: 50px;
+        }
+
+        td {
+            text-align: center;
+            padding: 15px;
+        }
+
+        input {
+            padding: 7px;
+            outline: none;
+            background-color: rgb(166, 233, 233);
+            border-radius: 10px;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            text-align: left;
+        }
+        
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3 style="text-align: center;">Darshan Panchal 24DEV086</h3>
+
+    <div class="container">
+        <form id="form" method="post">
+            <table>
+                <tr>
+                    <td>First Name</td>
+                    <td><input type="text" name="fname" id="fname"></td>
+                    <td class="error" id="e_fname"></td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td><input type="text" name="lname" id="lname"></td>
+                    <td class="error" id="e_lname"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" name="email" id="email"></td>
+                    <td class="error" id="e_email"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" value="Sign Up" onclick="validate()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div style="margin-top: 10px;">Already registered ? <a href="http://localhost:7500/sign_in">Sign in</a></div>
+        <div id="thanks"></div>
+    </div>
+    
+    <script>
+
+        async function handleSubmit() {
+
+            let formdata = document.getElementById('form');
+            const details = new FormData(formdata);
+            const params = new URLSearchParams(details);
+            const data = await new Response(params).text();
+
+            const response = await fetch("http://localhost:7500/sign_up", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded"
+                },
+                body: data
+            });
+
+            const result = await response.json();
+
+            if(result.msg) document.getElementById("e_email").innerHTML = "Invalid email";
+            else document.getElementById("thanks").innerHTML = `
+                <h1>Thank you for Registration</h1>
+                <div>Link to activate <a href=http://localhost:7500/password/?id=${result.id}&access_key=${result.access_key}&salt=${result.salt}>http://localhost:7500/password/?id=${result.id}&access_key=${result.access_key}&salt=${result.salt}</a></div>
+            `;
+        }
+
+        function validate() {
+            var isValid = true;
+            const fname = document.getElementById("fname").value;
+            const lname = document.getElementById("lname").value;
+            const email = document.getElementById("email").value;
+            if (fname === "") { document.getElementById("e_fname").innerHTML = "fill value"; isValid = false; }
+            else if (!/^[a-zA-Z\s]*$/.test(fname)) { document.getElementById("e_fname").innerHTML = "invalid value"; isValid = false; }
+            if (lname === "") { document.getElementById("e_lname").innerHTML = "fill value"; isValid = false; }
+            else if (!/^[a-zA-Z\s]*$/.test(lname)) { document.getElementById("e_lname").innerHTML = "invalid value"; isValid = false; }
+            if (email === "") { document.getElementById("e_email").innerHTML = "fill value"; isValid = false; }
+            else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/.test(email)) { document.getElementById("e_email").innerHTML = "invalid value"; isValid = false; }
+            isValid && handleSubmit();
+        }
+
+    </script>
+</body>
+
+</html>

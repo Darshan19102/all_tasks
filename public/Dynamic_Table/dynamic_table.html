@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            margin: auto;
+            margin-top: 100px;
+        }
+
+        td {
+            border: 2px solid black;
+            width: 50px;
+            height: 50px;
+        }
+
+        #column {
+            display: flex;
+            float: left;
+            gap: 5px;
+        }
+
+        #row {
+            float: right;
+            display: flex;
+            gap: 5px;
+        }
+
+        input {
+            width: 50px;
+            height: 50px;
+        }
+
+        tr:nth-of-type(odd) td:nth-of-type(odd),tr:nth-of-type(even) td:nth-of-type(even){
+            background-color: white;
+        }
+        tr:nth-of-type(odd) td:nth-of-type(even),tr:nth-of-type(even) td:nth-of-type(odd){
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h4 style="text-align: center;">Darshan Panchal<span style="float: right;">Date : 01/02/2024</span></h4>
+    <div id="column">
+        <input type="button" value="+" onclick="handleColumnInsert()">
+        <input type="button" value="-" onclick="handleColumnRemove()">
+        <h4>Column</h4>
+    </div>
+    <div id="row">
+        <input type="button" value="+" onclick="handleRowInsert()">
+        <input type="button" value="-" onclick="handleRowRemove()">
+        <h4>Row</h4>
+    </div>
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+        function handleColumnInsert() {
+            table = document.getElementsByTagName("table");
+            tr = table[0].getElementsByTagName('tr');
+            for (i = 0; i < tr.length; i++) {
+                tr[i].appendChild(document.createElement("td"))
+            }
+        }
+        function handleColumnRemove() {
+            table = document.getElementsByTagName("table");
+            tr = table[0].getElementsByTagName('tr');
+            if ((tr.length == 2 || tr.length > 2) && tr[0].getElementsByTagName("td").length > 2) {
+                for (i = 0; i < tr.length; i++) {
+                    tr[i].removeChild(tr[i].lastChild);
+                }
+            }
+        }
+        function handleRowInsert() {
+            table = document.getElementsByTagName("table");
+            tr = table[0].getElementsByTagName('tr');
+            td = tr[0].getElementsByTagName("td");
+            table[0].appendChild(document.createElement("tr"));
+            for (i = 0; i < td.length; i++) {
+                table[0].lastChild.appendChild(document.createElement("td"));
+            }
+        }
+        function handleRowRemove(){
+            table = document.getElementsByTagName("table");
+            tr = table[0].getElementsByTagName('tr');
+            if(tr.length > 2){
+                table[0].removeChild(table[0].lastChild);
+            }
+        }
+    </script>
+</body>
+
+</html>
