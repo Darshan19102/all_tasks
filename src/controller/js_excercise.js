@@ -11,3 +11,7 @@ exports.getKukuCube = async (req, res, next) => {
 exports.getTicTacToe = async (req, res, next) => {
     res.sendFile(path.join(__dirname, '../../public', 'Tic_Tac_Toe', 'tic_tac_toe.html'));
 }
+
+exports.getSorting = async (req, res, next) => {
+    res.sendFile(path.join(__dirname, '../../public', 'Sorting', 'sort.html'));
+}
