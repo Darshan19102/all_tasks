@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select{
+            padding: 10px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body onload="loadData()">
+    <div class="container">
+        <div class="states">
+            <select name="state" id="state" onchange="handleChange(this.value)">
+                <option value="default">States</option>
+            </select>
+        </div>
+        <div class="cities">
+            <select name="city" id="city">
+                <option value="default">Cities</option>
+            </select>
+        </div>
+    </div>
+    <script>
+
+        function loadData() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const sel = document.getElementById('state');
+                    JSON.parse(this.response).forEach(element => {
+                        const opt = document.createElement('option');
+                        opt.setAttribute('value', `${element.id}`);
+                        opt.innerHTML = `${element.name}`;
+                        sel.appendChild(opt);
+                    });
+                }
+            };
+            xhttp.open("GET", "/ajax/state", true);
+            xhttp.send();
+        }
+
+        function handleChange(e) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const sel = document.getElementById('city');
+                    let child = sel.lastElementChild;
+                    while (child) {
+                        sel.removeChild(child);
+                        child = sel.lastElementChild;
+                    }
+                    JSON.parse(this.response).forEach(element => {
+                        const opt = document.createElement('option');
+                        opt.setAttribute('value', `${element.id}`);
+                        opt.innerHTML = `${element.city}`;
+                        sel.appendChild(opt);
+                    });
+                }
+            };
+            xhttp.open("GET", `/ajax/city/${e}`, true);
+            xhttp.send();
+        }
+
+    </script>
+</body>
+
+</html>

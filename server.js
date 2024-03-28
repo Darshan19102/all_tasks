@@ -12,6 +12,7 @@ const attendance = require("./src/routes/attendance");
 const exam = require("./src/routes/exam");
 const students = require("./src/routes/students");
 const dq = require("./src/routes/dynamic_query");
+const ajax = require("./src/routes/ajax");
 const path = require("path");
 
 app.set('view engine', 'ejs');
@@ -26,6 +27,7 @@ app.use("/", attendance);
 app.use("/", exam);
 app.use("/", students);
 app.use("/", dq);
+app.use("/ajax", ajax);
 app.use("/task", js_excercise);
 
 
