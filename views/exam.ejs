@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            border: 2px solid black;
+        }
+
+        td,
+        th {
+            border: 2px solid black;
+            text-align: center;
+            padding: 8px;
+            border-collapse: collapse;
+        }
+
+        .tables {
+            height: 522px;
+            overflow-y: scroll;
+            border: 1px solid black;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: rgb(190, 213, 232);
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: rgb(163, 239, 238);
+        }
+
+        th {
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align: center; height: 12px;">Darshan Panchal</h2>
+    <div class="tables">
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">Student ID</th>
+                    <th rowspan="2">Student Name</th>
+                    <th colspan="2">Prelims</th>
+                    <th colspan="2">Terminal</th>
+                    <th colspan="2">Final</th>
+                    <th rowspan="2">Total</th>
+                    <th rowspan="2">Details</th>
+                </tr>
+                <tr>
+                    <th>Practical</th>
+                    <th>Theory</th>
+                    <th>Practical</th>
+                    <th>Theory</th>
+                    <th>Practical</th>
+                    <th>Theory</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for( let index=0; index < result.length; index +=3 ) { %>
+                    <tr>
+                        <td>
+                            <%=result[index].student_id%>
+                        </td>
+                        <td>
+                            <%=result[index].fname%>
+                        </td>
+                        <% for( let i=index; i < index + 3; i++) { %>
+                            <td>
+                                <%=result[i].practical%>
+                            </td>
+                            <td>
+                                <%=result[i].theory%>
+                            </td>
+                            <% } %>
+                                <td>
+                                    <%=Number(result[index].theory) + Number(result[index].practical) +
+                                        Number(result[index+1].theory) + Number(result[index+1].practical) +
+                                        Number(result[index+2].theory) + Number(result[index+2].practical) %>
+                                </td>
+                                <td><a href="/report/?id=<%=result[index].student_id%>" target="_blank"
+                                        rel="noopener noreferrer">View Details</a></td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+    <%- include('./partials/exam_component', {p}) %>
+</body>
+
+</html>

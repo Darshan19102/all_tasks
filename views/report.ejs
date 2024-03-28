@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            border: 2px solid black;
+        }
+
+        td,
+        th {
+            border: 2px solid black;
+            text-align: center;
+            padding: 3px;
+            border-collapse: collapse;
+        }
+        th{
+            background-color: rgb(182, 178, 178);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <hr>
+        <div class="row info">
+            <h3>
+                Enrollment No : <%=result[0].student_id%>
+            </h3>
+            <h3>
+                Name : <%=result[0].fname%> <%=result[0].lname%>
+            </h3>
+        </div>
+        <hr>
+        <div class="row card">
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Subject Code</th>
+                        <th rowspan="2">Subject Name</th>
+                        <th colspan="3">Theory</th>
+                        <th colspan="3">Practical</th>
+                        <th rowspan="2">Total Marks</th>
+                    </tr>
+                    <tr>
+                        <th>Prelims</th>
+                        <th>Terminal</th>
+                        <th>Final</th>
+                        <th>Prelims</th>
+                        <th>Terminal</th>
+                        <th>Final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( let index=0; index < result.length; index+=3 ) { %>
+                        <tr>
+                            <td>
+                                <%=result[index].subject_id%>
+                            </td>
+                            <td>
+                                <%=result[index].subject%>
+                            </td>
+                            <td>
+                                <%=result[index].obtain_theory_marks%>
+                            </td>
+                            <td>
+                                <%=result[index].practical_obtain_marks%>
+                            </td>
+                            <td>
+                                <%=result[index+1].obtain_theory_marks%>
+                            </td>
+                            <td>
+                                <%=result[index+1].practical_obtain_marks%>
+                            </td>
+                            <td>
+                                <%=result[index+2].obtain_theory_marks%>
+                            </td>
+                            <td>
+                                <%=result[index+2].practical_obtain_marks%>
+                            </td>
+                            <td>
+                                <%=Number(result[index].obtain_theory_marks) +
+                                    Number(result[index].practical_obtain_marks) +
+                                    Number(result[index+1].obtain_theory_marks) +
+                                    Number(result[index+1].practical_obtain_marks) +
+                                    Number(result[index+2].obtain_theory_marks) +
+                                    Number(result[index+2].practical_obtain_marks) %>
+                            </td>
+                        </tr>
+                        <% } %>
+                            <div class="none" style="display: none;">
+                                <%var sum=0;%>
+                                    <% for( let index=0; index < result.length; index++ ) { %>
+                                        <%=sum +=Number(result[index].obtain_theory_marks) +
+                                            Number(result[index].practical_obtain_marks)%>
+                                            <% } %>
+                            </div>
+                            <tr>
+                                <% if (sum>=300) { %>
+                                    <td colspan="2" style="color: green;">You have passed exam !!</td>
+                                <% } %>
+                                <% if (sum<300) { %>
+                                    <td colspan="2" style="color: red;">You have failed !!</td>
+                                <% } %>
+                                <td colspan="3">Attendance : <%=parseFloat(result2[0].total_attendance / 91 * 100).toFixed(2)%>%</td></td>
+                                <td colspan="3">Percentage : <%=parseFloat(sum /1200 * 100).toFixed(2)%>%</td>
+                                <td>Total : <%=sum%></td>                                
+                            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

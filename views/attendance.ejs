@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            border: 2px solid black;
+        }
+
+        td,
+        th {
+            border: 2px solid black;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-collapse: collapse;
+        }
+
+        .tables {
+            height: 454px;
+            overflow-y: scroll;
+            border: 1px solid black;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: rgb(190, 213, 232);
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: rgb(163, 239, 238);
+        }
+
+        th {
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align: center;">Darshan Panchal</h2>
+    <h4 style="text-align: center;">Month : <%=m%></h4>
+    <div class="tables">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Present Day</th>
+                    <th>Percentage of Attendace</th>
+                    <th>Extra</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<result.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%=result[i].id%>
+                        </td>
+                        <td>
+                            <%=result[i].fname%>
+                        </td>
+                        <td>
+                            <%=result[i].present_day%>
+                        </td>
+                        <% if (result[i].month_n == "December") { %>
+                            <td>
+                                <%=parseFloat((result[i].present_day/31)*100).toFixed(2)%>%
+                            </td>
+                        <% } %>
+                        <% if (result[i].month_n == "January") { %>
+                            <td>
+                                <%=parseFloat((result[i].present_day/31)*100).toFixed(2)%>%
+                            </td>
+                        <% } %>
+                        <% if (result[i].month_n == "February") { %>
+                            <td>
+                                <%=parseFloat((result[i].present_day/29)*100).toFixed(2)%>%
+                            </td>
+                        <% } %>
+                                <td>
+
+                                </td>
+                    </tr>
+                    <%}%>
+            </tbody>
+        </table>
+    </div>
+    <%- include('./partials/attendance_component', {p,m}) %>
+</body>
+
+</html>

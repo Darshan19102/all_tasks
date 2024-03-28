@@ -61,7 +61,7 @@ async function value(data) {
         values.push(v);
         i = j;
     }
-    console.log(values);
+    // console.log(values);
 
     return values;
 }

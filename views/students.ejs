@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            border: 2px solid black;
+        }
+
+        td,
+        th {
+            border: 2px solid black;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-collapse: collapse;
+        }
+
+        .tables {
+            height: 544px;
+            overflow-y: scroll;
+            border: 1px solid black;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: rgb(190, 213, 232);
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: rgb(163, 239, 238);
+        }
+
+        th {
+            background-color: cadetblue;
+            padding: 10px;
+            /* display: flex; */
+        }
+
+        th a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+
+        .arrow i {
+            padding: 2px;
+            width: 14px;
+            text-align: center;
+            margin: 2px;
+            background-color: transparent;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tables">
+        <table>
+            <thead>
+                <tr>
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o1%>&order_by=id">ID </a>
+                        <div class="arrow">
+                            <% if (o1==="desc" && o_b==='id' ) { %>
+                                <i class="fa-solid fa-angle-up"></i>
+                            <% } %>
+                            <% if (o1==="asc" && o_b==='id' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o1%>&order_by=fname">First Name</a>
+                        <div class="arrow">
+                            <% if (o1==="desc" && o_b==='fname' ) { %>
+                                <i class="fa-solid fa-angle-up"></i>
+                            <% } %>
+                            <% if (o1==="asc" && o_b==='fname' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o1%>&order_by=lname">Last Name</a>
+                        <div class="arrow">
+                            <% if (o1==="desc" && o_b==='lname' ) { %>
+                                <i class="fa-solid fa-angle-up"></i>
+                            <% } %>
+                            <% if (o1==="asc" && o_b==='lname' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o1%>&order_by=email">Email</a>
+                        <div class="arrow">
+                            <% if (o1==="desc" && o_b==='email' ) { %>
+                                <i class="fa-solid fa-angle-up"></i>
+                                <% } %>
+                            <% if (o1==="asc" && o_b==='email' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o1%>&order_by=city">City</a>
+                        <div class="arrow">
+                            <% if (o1==="desc" && o_b==='city' ) { %>
+                               <i class="fa-solid fa-angle-up"></i>
+                            <% } %>
+                            <% if (o1==="asc" && o_b==='city' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o1%>&order_by=department">Department</a>
+                        <div class="arrow">
+                            <% if (o1==="desc" && o_b==='department' ) { %>
+                                <i class="fa-solid fa-angle-up"></i>
+                            <% } %>
+                            <% if (o1==="asc" && o_b==='department' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o1%>&order_by=country">Country</a>
+                        <div class="arrow">
+                            <% if (o1==="desc" && o_b==='country' ) { %>
+                                <i class="fa-solid fa-angle-up"></i>
+                            <% } %>
+                            <% if (o1==="asc" && o_b==='country' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o%>&order_by=DOB">Date Of Birth</a>
+                        <div class="arrow">
+                            <% if (o==="desc" && o_b==='DOB' ) { %>
+                                <i class="fa-solid fa-angle-up"></i>
+                            <% } %>
+                            <% if (o==="asc" && o_b==='DOB' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o1%>&order_by=age">Age</a>
+                        <div class="arrow">
+                            <% if (o1==="desc" && o_b==='age' ) { %>
+                                <i class="fa-solid fa-angle-up"></i>
+                            <% } %>
+                            <% if (o1==="asc" && o_b==='age' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o1%>&order_by=pincode">Pincode</a>
+                        <div class="arrow">
+                            <% if (o1==="desc" && o_b==='pincode' ) { %>
+                                <i class="fa-solid fa-angle-up"></i>
+                                <% } %>
+                            <% if (o1==="asc" && o_b==='pincode' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+
+                    <th>
+                        <a href="/students?page=1&order=<%=o1%>&order_by=created_at">Created Date</a>
+                        <div class="arrow">
+                            <% if (o1==="desc" && o_b==='created_at' ) { %>
+                                <i class="fa-solid fa-angle-up"></i>
+                            <% } %>
+                            <% if (o1==="asc" && o_b==='created_at' ) { %>
+                                <i class="fa-solid fa-angle-down"></i>
+                            <% } %>
+                        </div>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<result.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%=result[i].id%>
+                        </td>
+                        <td>
+                            <%=result[i].fname%>
+                        </td>
+                        <td>
+                            <%=result[i].lname%>
+                        </td>
+                        <td>
+                            <%=result[i].email%>
+                        </td>
+                        <td>
+                            <%=result[i].city%>
+                        </td>
+                        <td>
+                            <%=result[i].department%>
+                        </td>
+                        <td>
+                            <%=result[i].country%>
+                        </td>
+                        <td>
+                            <%=result[i].DOB%>
+                        </td>
+                        <td>
+                            <%=result[i].age%>
+                        </td>
+                        <td>
+                            <%=result[i].pincode%>
+                        </td>
+                        <td>
+                            <%=result[i].created_at%>
+                        </td>
+                    </tr>
+                    <%}%>
+            </tbody>
+        </table>
+    </div>
+    <%- include('./partials/students_component', {p,o,o_b}) %>
+</body>
+
+</html>
