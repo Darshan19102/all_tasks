@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            border: 2px solid black;
+        }
+
+        td,
+        th {
+            border: 2px solid black;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-collapse: collapse;
+        }
+
+        .tables {
+            height: 454px;
+            overflow-y: scroll;
+            border: 1px solid black;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: rgb(190, 213, 232);
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: rgb(163, 239, 238);
+        }
+
+        th {
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align: center;">Darshan Panchal</h2>
+    <div class="tables">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Designation</th>
+                    <th>DOB</th>
+                    <th>Email</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<result.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%=result[i].employee_id%>
+                        </td>
+                        <td>
+                            <%=result[i].first_name%>
+                        </td>
+                        <td>
+                            <%=result[i].last_name%>
+                        </td>
+                        <td>
+                            <%=result[i].designation%>
+                        </td>
+                        <td>
+                            <%=JSON.stringify(result[i].DOB).slice(1,11)%>
+                        </td>
+                        <td>
+                            <%=result[i].email%>
+                        </td>
+                        <td>
+                            <a href=/ajax/update/<%=result[i].employee_id%>>Edit</a>
+                        </td>
+                    </tr>
+                    <%}%>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+.page{
+    display: none;
+}
+
+#submit{
+    float: right;
+}
+
+input {
+    position: relative;
+}
+
+.error {
+    font-size: 10px;
+    color: red;
+    position: absolute;
+    margin-left: 5px;
+}
+
+.experience {
+    position: relative;
+}
+
+.reference_contact {
+    position: relative;
+}
+
+.education {
+    position: relative;
+}
+
+.experience .buttons {
+    position: absolute;
+    top: 0;
+    right: 40px;
+}
+
+.education .buttons {
+    position: absolute;
+    top: 0;
+    right: 40px;
+}
+
+.reference_contact .buttons {
+    position: absolute;
+    top: 0;
+    right: 40px;
+}
+
+.experience .buttons input {
+    padding: 5px;
+    margin: 2px;
+}
+
+.reference_contact .buttons input {
+    padding: 5px;
+    margin: 2px;
+}
+
+.education .buttons input {
+    padding: 5px;
+    margin: 2px;
+}
+
+.btn-cnr{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-cnr input{
+    padding: 10px;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.header .box{
+    background-color: cornflowerblue;
+    padding: 20px;
+    opacity: 0.8;
+}
