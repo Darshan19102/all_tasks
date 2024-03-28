@@ -24,3 +24,11 @@ exports.getCity = async(req,res,next)=>{
         console.log(error);
     }
 }
+
+exports.getPosts = async(req,res,next)=>{
+    res.sendFile(path.join(__dirname,'../../public','Jsonplaceholder','index.html'));
+}
+
+exports.getPost = async(req,res,next)=>{
+    res.sendFile(path.join(__dirname,'../../public','Jsonplaceholder','single_data.html'));
+}

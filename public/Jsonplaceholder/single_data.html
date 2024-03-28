@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border: 2px solid green;
+            border-collapse: collapse;
+        }
+
+        thead {
+            border: 2px solid black;
+        }
+
+        td,
+        th {
+            border: 2px solid black;
+            text-align: center;
+            padding: 20px;
+            border-collapse: collapse;
+        }
+
+        .tables {
+            max-height: 364px;
+            overflow-y: scroll;
+            border: 1px solid black;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: rgb(190, 213, 232);
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: rgb(163, 239, 238);
+        }
+
+        input {
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        #row {
+            align-items: stretch;
+            display: flex;
+            gap: 20px;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            margin: 20px;
+        }
+
+        .card {
+            max-width: 33.333%;
+            padding: .75rem;
+            margin-bottom: 2rem;
+            border: 0;
+            flex-basis: 33.333%;
+            flex-grow: 0;
+            flex-shrink: 0;
+            border: 2px solid black;
+            border-radius: 20px;
+        }
+
+        .card-text {
+            font-size: 85%;
+        }
+    </style>
+</head>
+
+<body onload="myFunc()">
+    <table id="table"></table>
+    <input type="button" value="Show Comments" onclick="myFunc2()">
+    <div class="container">
+        <div id="row"></div>
+    </div>
+    <script>
+        const myFunc = async () => {
+            const id = window.location.href.split("/").pop();
+            let data = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+            let d = await data.json();
+            let table = document.getElementById('table');
+            table.innerHTML = `
+                <tr>
+                    <td>user_id</td>
+                    <td>id</td>
+                    <td>title</td>
+                    <td>body</td>
+                </tr>`
+            table.innerHTML += `
+                <tr>
+                    <td>${d.userId}</td>
+                    <td>${d.id}</td>
+                    <td>${d.title}</td>
+                    <td>${d.body}</td>
+                </tr>`
+        }
+        const myFunc2 = async () => {
+            if (document.getElementById('row').innerHTML) document.getElementById('row').innerHTML = "";
+            else {
+                const id = window.location.href.split("/").pop();
+                let comments = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`);
+                let c = await comments.json();
+                let cards = document.getElementById('row');
+                c.map((data) => {
+                    cards.innerHTML += `
+                    <div class="card">
+                        <p class="card-text">Name : ${data.name}</p>
+                        <p class="card-text">Email : ${data.email}</p>
+                        <p class="card-text">Comment : ${data.body}</p>
+                    </div>`
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>
