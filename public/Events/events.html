@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listeners</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        td {
+            height: 100px;
+            text-align: center;
+            border: 2px solid black;
+        }
+
+        tr {
+            border: 2px solid black;
+        }
+
+        input {
+            font-size: large;
+            border: none;
+            background-color: white;
+            color: grey;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        input::placeholder {
+            color: black;
+        }
+    </style>
+</head>
+<!-- onscroll="alert('Scolling...')" scrolling event -->
+<body ononline="alert('Connected To Network')" onoffline="alert('Network Too Low')" onload="alert('Page loaded')" onbeforeunload="alert('Page Unloaded')"
+    onresize="alert('Page resized')">
+    <table>
+        <tbody>
+            <tr>
+                <td colspan="3">
+                    <h3>Mouse Events</h3>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" id="click" value="Click Me" ondblclick="alert('Double Click Event Triggered')"
+                        onclick="alert('Click Event Triggered')"></td>
+                <td><input type="button" id="mouseover" value="Take Mouse Over"
+                        onmouseover="alert('Mouse Over Event Triggered')"></td>
+                <td><input type="button" id="mouseout" value="Take Mouse Out"
+                        onmouseout="alert('Mouse Out Event Triggered')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" id="mousedown" value="Take Mouse Down"
+                        onmousedown="alert('Mouse Down Event Triggered')"></td>
+                <td><input type="button" id="mouseup" value="Take Mouse Up"
+                        onmouseup="alert('Mouse Up Event Triggered')"></td>
+                <td><input type="button" id="mouseove" value="Move Mouse"
+                        onmousemove="alert('Mouse Move Event Triggered')"></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <h3>Keyboard Events</h3>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" id="keydown" value="Key Down"
+                        onkeydown="alert('Keyboard Key Down Event Triggered')"></td>
+                <td><input type="button" id="keyup" value="Key Up" onkeyup="alert('Keyboard Key Up Event Triggered')">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <h3>Form Events</h3>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="text" id="focus" placeholder="Focus on me" onfocus="focusFunction()"></td>
+                <td>
+                    <form onsubmit="alert('form submitted successfully')"><input type="submit" value="Submit"></form>
+                </td>
+                <td><input type="text" id="blur" placeholder="Blur me" onblur="blurFunction()"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="change" placeholder="Change me" onchange="changeFunction()"></td>
+                <td>
+                    <form><input type="text" placeholder="Enter text" oninvalid="alert('You must fill out the form!');"
+                            name="fname" required><input type="submit" value="Submit"></form>
+                </td>
+                <td><span id="res"></span><input type="text" id="input" placeholder="Text me" oninput="handleInput()">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <h3>Window Events</h3>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" id="load" value="Load page" onclick="loadFunction()"></td>
+                <td><input type="button" id="unload" value="Unload page" onclick="unloadFunction()"></td>
+                <td><input type="button" id="resize" value="Resize page" onclick="resizeFunc()"></td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        function focusFunction() {
+            document.getElementById('focus').style.backgroundColor = "blue";
+            alert('Focused')
+        }
+        function blurFunction() {
+            let x = document.getElementById('blur');
+            x.value = x.value.toUpperCase();
+            alert("When you leave input box text will be uppercased means blur...")
+        }
+        function changeFunction() {
+            alert("Changed value is " + document.getElementById('change').value)
+        }
+        function loadFunction() {
+            window.location.reload();
+        }
+        function unloadFunction() {
+            // window.location.href = "www.google.com"
+            window.close();
+        }
+        function resizeFunc() {
+            alert('Inspect and resize')
+        }
+        function handleInput() {
+            document.getElementById('res').innerHTML = document.getElementById('input').value;
+        }
+    </script>
+</body>
+
+</html>

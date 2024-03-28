@@ -15,3 +15,7 @@ exports.getTicTacToe = async (req, res, next) => {
 exports.getSorting = async (req, res, next) => {
     res.sendFile(path.join(__dirname, '../../public', 'Sorting', 'sort.html'));
 }
+
+exports.getEvents = async(req,res,next)=>{
+    res.sendFile(path.join(__dirname, '../../public', 'Events', 'events.html'));
+}
