@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const login = require("./src/routes/authentication");
 const js_excercise = require("./src/routes/js_excercise");
+const student_data = require("./src/routes/student_data");
+const delimeter = require("./src/routes/delimeter");
 const path = require("path");
 
 app.set('view engine', 'ejs');
@@ -14,6 +16,8 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/", login);
+app.use("/",student_data);
+app.use("/",delimeter);
 app.use("/task", js_excercise);
 
 

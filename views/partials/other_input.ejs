@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #form_other {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="abc" style="visibility: visible;">
+        <form id="form_other" action="/show_data" method="get">
+            <div class="row">
+                First Name : <input type="text" name="fname" id="fname" tabindex="2" value="<%=fname%>">
+                Last Name : <input type="text" name="lname" id="lname" tabindex="3" value="<%= lname %>">
+                City : <input type="text" name="city" id="city" tabindex="4" value="<%= city %>">
+            </div>
+            <div class="row">
+                Department : <input type="text" name="department" id="department" tabindex="5"
+                    value="<%= department %>">
+                Date of Birth : <input type="text" name="dob" id="dob" tabindex="6" value="<%= dob %>">
+                Age : <input type="text" name="age" id="age" tabindex="7" value="<%= age %>">
+            </div>
+            <div class="row">
+                Pincode : <input type="text" name="pincode" id="pincode" tabindex="8" value="<%= pincode %>">
+                Operator : <select name="operator" id="op" tabindex="9">
+                    <option value="AND">AND</option>
+                    <option value="OR" selected>OR</option>
+                </select>
+                <input type="submit" value="Go">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+
+<body>
+    <%- include('./partials/id_input',{id}) %>
+        <%- include('./partials/other_input',{fname, lname, city, department, dob, age, pincode, operator}) %>
+            <%- include('./partials/students_data', { result, p }) %>
+                <%- include('./partials/student_data_component', {p , maxlength,fname, lname, city, department, dob, age, pincode, operator}) %>
+    <script>
+        function handleMore() {
+            const all = document.getElementById('abc');
+            if (all.style.visibility === "hidden") {
+                all.style.visibility = "visible";
+            } else {
+                all.style.visibility = "hidden";
+            }
+        }
+    </script>
+</body>
+
+</html>

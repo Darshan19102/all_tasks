@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form {
+            margin-left: 30px;
+        }
+        .abcd{
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="abcd">
+        <form class="form" action="/show_data" method="get">
+            ID : <input type="number" name="id" id="id" tabindex="0" value="<%=id%>">
+            <input type="submit" value="Go">
+        </form>
+        <input type="submit" value="Show More" onclick="handleMore()">
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border: 2px solid green;
+            border-collapse: collapse;
+        }
+
+        thead {
+            border: 2px solid black;
+        }
+
+        td,
+        th {
+            border: 2px solid black;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-collapse: collapse;
+        }
+
+        .tables {
+            max-height: 364px;
+            overflow-y: scroll;
+            border: 1px solid black;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: rgb(190, 213, 232);
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: rgb(163, 239, 238);
+        }
+
+        th {
+            background-color: cadetblue;
+            padding: 10px;
+            /* display: flex; */
+        }
+
+        th a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tables">
+        <table>
+            <thead>
+                <tr>
+
+                    <th>
+                        <a href="/show_data">ID </a>
+                    </th>
+
+                    <th>
+                        <a href="/show_data">First Name</a>
+                    </th>
+
+                    <th>
+                        <a href="/show_data">Last Name</a>
+                    </th>
+
+                    <th>
+                        <a href="/show_data">Email</a>
+                    </th>
+
+                    <th>
+                        <a href="/show_data">City</a>
+                    </th>
+
+                    <th>
+                        <a href="/show_data">Department</a>
+                    </th>
+
+                    <th>
+                        <a href="/show_data">Country</a>
+                    </th>
+
+                    <th>
+                        <a href="/show_data">Date Of Birth</a>
+                    </th>
+
+                    <th>
+                        <a href="/show_data">Age</a>
+                    </th>
+
+                    <th>
+                        <a href="/show_data">Pincode</a>
+                    </th>
+
+                    <th>
+                        <a href="/show_data">Created Date</a>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<result.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%=result[i].id%>
+                        </td>
+                        <td>
+                            <%=result[i].fname%>
+                        </td>
+                        <td>
+                            <%=result[i].lname%>
+                        </td>
+                        <td>
+                            <%=result[i].email%>
+                        </td>
+                        <td>
+                            <%=result[i].city%>
+                        </td>
+                        <td>
+                            <%=result[i].department%>
+                        </td>
+                        <td>
+                            <%=result[i].country%>
+                        </td>
+                        <td>
+                            <%=result[i].DOB%>
+                        </td>
+                        <td>
+                            <%=result[i].age%>
+                        </td>
+                        <td>
+                            <%=result[i].pincode%>
+                        </td>
+                        <td>
+                            <%=result[i].created_at%>
+                        </td>
+                    </tr>
+                    <%}%>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
