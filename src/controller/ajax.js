@@ -194,12 +194,6 @@ exports.getUpdateForm = async(req,res,next)=>{
         const experience = experienceData[0];
         const language = languageData[0];
         const technology = technologyData[0];
-        // console.log(user);
-        // console.log(education);
-        // console.log(reference);
-        // console.log(experience);
-        // console.log(technology);
-        // console.log(language);
         technology.forEach((t) => {
             if (t.tech_id === 8) php.push(t);
             if (t.tech_id === 9) mysql.push(t);

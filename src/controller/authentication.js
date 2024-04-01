@@ -66,7 +66,7 @@ exports.postSignIn = async (req, res, next) => {
 
         const token = jwt.sign({ id }, process.env.SECRETKEY, { expiresIn: '1h' });
 
-        res.cookie('token', token, { expires: new Date(Date.now() + 900000), httpOnly: true });
+        res.cookie('token', token, { expires: new Date(Date.now() + 3600000), httpOnly: true });
 
         return res.json({ msg: "Login Successfully", token: token, msg_2: "Click here to <a href=http://localhost:7500/home>Go to Dashboard</a>" });
 
