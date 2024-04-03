@@ -40,16 +40,15 @@
     <div class="container">
         <span id="result"></span>
         <div class="input_tag">
-            <input type="text" name="text" id="array" onchange="change()">
+            <input type="text" name="text" id="array" onchange="change()" placeholder="1,2,3,4....">
         </div>
         <div class="sorts">
             <div class="s_1">
                 <input type="button" value="Bubble Sort" onclick="bubble_sort()">
                 <input type="button" value="Insertion Sort" onclick="insertion_sort()">
+                <input type="button" value="Selection Sort" onclick="selection_sort()">
             </div>
             <div class="s_1">
-                <input type="button" value="Selection Sort" onclick="selection_sort()">
-                <input type="button" value="Merge Sort" onclick="mergeSort()">
             </div>
         </div>
     </div>
@@ -126,73 +125,6 @@
             }
             document.getElementById('result').innerHTML = "Sorted Values : " + numbers;
         }
-
-
-
-        // Merge sort
-
-        function mergeSortedList(leftList, rightList) {
-            let sortedList = [];
-            while (leftList.length && rightList.length) {
-                if (leftList[0] <= rightList[0]) {
-                    sortedList.push(leftList.shift());
-                } else {
-                    sortedList.push(rightList.shift());
-                }
-                if (leftList.length) {
-                    sortedList = sortedList.concat(leftList);
-                }
-                if (rightList.length) {
-                    sortedList = sortedList.concat(rightList);
-                }
-                return sortedList;
-            }
-        }
-
-        function mergeSort(unsortedList) {
-            const list = [...unsortedList];
-            if (list.length <= 1) {
-                return list;
-            }
-            const middle = Math.floor(list.length / 2);
-            const leftList = list.slice(0, middle);
-            const rightList = list.slice(middle, list.length);
-            const leftSortedList = mergeSort(leftList);
-            const rightSortedList = mergeSort(rightList);
-            return mergeSortedList(leftSortedList, rightSortedList);
-        }
-
-        function partition(arr) {
-            let i = 0;
-            let j = arr.length - 1;
-            let pivot = arr[i];
-            while (i < j) {
-                while (arr[i] <= pivot) i++;
-                while (arr[j] > pivot) j--;
-                if (i < j) {
-                    temp = arr[i];
-                    arr[i] = arr[j]
-                    arr[j] = temp;
-                }
-            }
-            temp = pivot;
-            pivot = arr[j];
-            arr[j] = temp;
-            return j;
-        }
-
-        function quick_sort(array) {
-            console.log(array);
-            if (array.length <= 1) return array;
-            let location = partition(array);
-            quick_sort(array.slice(0, location));
-            quick_sort(array.slice(location + 1));
-            // return array;
-        }
-
-        console.log(quick_sort(numbers));
-
-
 
     </script>
 </body>

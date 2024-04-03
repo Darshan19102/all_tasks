@@ -17,6 +17,7 @@ const path = require("path");
 const cors = require("cors");
 
 
+
 app.set('view engine', 'ejs');
 
 app.use(cors())

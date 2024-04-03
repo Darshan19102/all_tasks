@@ -9,7 +9,7 @@ router.route("/sign_in").get(getSignIn).post(postSignIn);
 router.route("/password").get(getPassword).post(postPassword);
 router.route("/forget").get(getForget).post(postForget);
 router.route("/generateToken").get(generateToken);
-router.route("/logout").get(isAuthenticated,logout);
+router.route("/logout").get(logout);
 router.route("/home").get(isAuthenticated,getDashboard);
 
 module.exports = router;
