@@ -3,8 +3,12 @@ const md5 = require("md5");
 const jwt = require("jsonwebtoken");
 
 exports.getSignUp = async (req, res, next) => {
-   if(req.cookies.token) res.render("home") 
-   else res.render("signup");
+    try {
+        if (req.cookies.token) res.render("home");
+        else res.render("signup");
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 exports.postSignUp = async (req, res, next) => {
@@ -44,7 +48,11 @@ exports.postSignUp = async (req, res, next) => {
 }
 
 exports.getSignIn = async (req, res, next) => {
-    res.render("signin");
+    try {
+        res.render("signin");
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 exports.postSignIn = async (req, res, next) => {
@@ -175,10 +183,18 @@ exports.generateToken = async (req, res, next) => {
 }
 
 exports.logout = async (req, res, next) => {
-    res.clearCookie('token');
-    res.redirect("/sign_in");
+    try {        
+        res.clearCookie('token');
+        res.redirect("/sign_in");
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 exports.getDashboard = async (req, res, next) => {
-    res.render("home");
+    try {
+        res.render("home");
+    } catch (error) {
+        console.log(error);
+    }
 }

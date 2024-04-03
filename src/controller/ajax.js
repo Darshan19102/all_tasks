@@ -2,7 +2,11 @@ const db = require("../config/connection");
 const path = require("path");
 
 exports.getDropDown = async (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../../public', 'State_City', 'state_city.html'));
+    try {
+        res.sendFile(path.join(__dirname, '../../public', 'State_City', 'state_city.html'));
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 exports.getState = async(req,res,next)=>{
@@ -26,11 +30,19 @@ exports.getCity = async(req,res,next)=>{
 }
 
 exports.getPosts = async(req,res,next)=>{
-    res.sendFile(path.join(__dirname,'../../public','Jsonplaceholder','index.html'));
+    try {
+        res.sendFile(path.join(__dirname,'../../public','Jsonplaceholder','index.html'));
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 exports.getPost = async(req,res,next)=>{
-    res.sendFile(path.join(__dirname,'../../public','Jsonplaceholder','single_data.html'));
+    try {
+        res.sendFile(path.join(__dirname,'../../public','Jsonplaceholder','single_data.html'));
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 exports.getForm = async(req,res,next)=>{
