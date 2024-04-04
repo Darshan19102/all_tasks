@@ -36,8 +36,10 @@ function handleExperienceAdd() {
     const inputs = row.lastElementChild.getElementsByTagName('input');
     if (row.lastElementChild) {
         for (let i = 1; i < inputs.length; i++) {
+            console.log(inputs[i].name);
             if (inputs[i].value == '') { document.getElementById('exp_error').innerHTML = "Please fill previous fields"; return false; }
             else if (!/^[a-zA-Z0-9.-\s]*$/.test(inputs[i].value)) { document.getElementById('exp_error').innerHTML = "0-9 / a - z"; return false; }
+            else if((inputs[i].name === "from_1[]" || inputs[i].name === "to_1[]") && !/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/.test(inputs[i].value)) { document.getElementById('exp_error').innerHTML = "date format must be yyyy-mm-dd"; return false; }
         }
     }
     const element = document.createElement('div');
@@ -69,7 +71,7 @@ function handleRefAdd() {
     if (row.lastElementChild) {
         for (let i = 1; i < inputs.length; i++) {
             if (inputs[i].value == '') { document.getElementById('ref_error').innerHTML = "Please fill previous fields"; return false; }
-            else if (!/^[a-zA-Z0-9.-\s]*$/.test(inputs[i].value)) { document.getElementById('ref_error').innerHTML = "fill values between range 0-9"; return false; }
+            else if (!/^[a-zA-Z0-9.-\s]*$/.test(inputs[i].value)) { document.getElementById('ref_error').innerHTML = "fill percentage from 1-100% or year 1990-2024"; return false; }
         }
     }
     const element = document.createElement('div');
@@ -98,7 +100,7 @@ function handleEducationAdd() {
     if (row.lastElementChild) {
         for (let i = 1; i < inputs.length; i++) {
             if (inputs[i].value == '') { console.log("true"); document.getElementById('edu_error').innerHTML = "Please fill previous fields"; return false; }
-            else if (!/^\d+/.test(inputs[i].value)) { console.log("true_2"); document.getElementById('edu_error').innerHTML = "fill values between range 0-9"; return false; }
+            else if (!/^\d+/.test(inputs[i].value)) { console.log("true_2"); document.getElementById('edu_error').innerHTML = "fill percentage between 1-100% or year between 1990-2024"; return false; }
         }
     }
     const element = document.createElement('div');

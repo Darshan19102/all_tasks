@@ -38,7 +38,7 @@
                     <input type="text" id="address_1" name="address_1" value="<%=user && user.address_1%>">
                     <span id="e_address_1" class="error"></span><br /><br />
                     <label for="email">Email</label>
-                    <input type="text" id="email" name="email" value="<%=user && user.email%>">
+                    <input type="text" id="email" name="email" value="<%=user && user.email%>" placeholder="abc@gmail.com">
                     <span id="e_email" class="error"></span>
                     <label for="address_2" style="margin-left: 30%">Address 2</label>
                     <input type="text" id="address_2" name="address_2" value="<%=user && user.address_2%>">
@@ -129,11 +129,11 @@
                                 value="<%=element.designation%>">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="from_1">From</label>
-                            <input type="text" name="from_1[]" class="from_1"
+                            <input type="text" name="from_1[]" class="from_1" placeholder="yyyy-mm-dd"
                                 value="<%=element && element.starting_date && JSON.stringify(element.starting_date).slice(1,11)%>">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="to_1">To</label>
-                            <input type="text" name="to_1[]" class="to_1"
+                            <input type="text" name="to_1[]" class="to_1" placeholder="yyyy-mm-dd"
                                 value="<%=element && element.end_date && JSON.stringify(element.end_date).slice(1,11)%>"><br /><br />
                         </div>
                         <% }) %>

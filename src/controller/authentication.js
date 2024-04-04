@@ -49,7 +49,8 @@ exports.postSignUp = async (req, res, next) => {
 
 exports.getSignIn = async (req, res, next) => {
     try {
-        res.render("signin");
+        if (req.cookies.token) res.render("home");
+        else res.render("signin");
     } catch (error) {
         console.log(error);
     }
@@ -126,7 +127,11 @@ exports.postPassword = async (req, res, next) => {
 }
 
 exports.getForget = async (req, res, next) => {
-    res.render("email");
+    try {
+        res.render("email");
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 exports.postForget = async (req, res, next) => {
@@ -173,7 +178,7 @@ exports.generateToken = async (req, res, next) => {
 
         const update_data = await db.promise().query('update users set access_key = ?,created_at=now() where access_key = ?', [updated_access_key, access_key]);
 
-        res.send(`<h3 style="color:blue; text-align:center;">Token generated sucessfully :: ${updated_access_key}</h3><br/><a href="http://localhost:7500/password/?id=${isUserExist[0][0].id}&access_key=${updated_access_key}&salt=${isUserExist[0][0].salt}">Click here to change password</a>`);
+        res.send(`<h3 style="color:blue; text-align:center;">Token generated sucessfully :: ${updated_access_key}</h3><br/><a style="color:blue; text-align:center;" href="http://localhost:7500/password/?id=${isUserExist[0][0].id}&access_key=${updated_access_key}&salt=${isUserExist[0][0].salt}">Click here to change password</a>`);
 
     } catch (error) {
 
@@ -183,7 +188,7 @@ exports.generateToken = async (req, res, next) => {
 }
 
 exports.logout = async (req, res, next) => {
-    try {        
+    try {
         res.clearCookie('token');
         res.redirect("/sign_in");
     } catch (error) {
