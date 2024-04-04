@@ -28,7 +28,7 @@ exports.postSignUp = async (req, res, next) => {
 
         let salt = "";
 
-        let access_key = "";
+        let access_key = ""; 
 
         while (counter <= 12) {
             salt += characters.charAt(Math.floor(Math.random() * charactersLength));
