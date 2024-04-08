@@ -26,16 +26,17 @@ exports.getDelimeter = async(req,res,next)=>{
             if (r.charAt(0) == ':') city.push(`city LIKE '%${r.slice(1)}%'`);
         });
 
-        if (firstname.length > 0) sql += firstname.join(" OR ") + " AND ";
-        if (lastname.length > 0) sql += lastname.join(" OR ") + " AND ";
-        if (pincode.length > 0) sql += pincode.join(" OR ") + " AND ";
-        if (department.length > 0) sql += department.join(" OR ") + " AND ";
-        if (age.length > 0) sql += age.join(" OR ") + " AND ";
-        if (city.length > 0) sql += city.join(" OR ") + " AND ";
+        if (firstname.length > 0) sql += "(" + firstname.join(" OR ") + ")" + " AND ";
+        if (lastname.length > 0) sql += "(" + lastname.join(" OR ") + ")" + " AND ";
+        if (pincode.length > 0) sql += "(" + pincode.join(" OR ") + ")" + " AND ";
+        if (department.length > 0) sql += "(" + department.join(" OR ") + ")" + " AND ";
+        if (age.length > 0) sql += "(" + age.join(" OR ") + ")" + " AND ";
+        if (city.length > 0) sql += "(" + city.join(" OR ") + ")" + " AND ";
 
         
         if (sql.includes("where")) sql = sql.slice(0, -4);
-                
+        
+
         db.query(sql, (err, result) => {
             if (err) console.log(err);
             else res.render('delimeter', { result, data })
